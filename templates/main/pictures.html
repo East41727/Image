@@ -1,0 +1,141 @@
+{% load thumbnail %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+    
+
+    
+
+<div style="display: flex; margin-top: 10px;">
+
+
+
+
+    
+<div class="container">
+    <div class="row">
+        {% for picture  in page_obj %}
+        <div class="col-md-3">
+            
+
+            <div class="card" style="width: 18rem;">
+              {% if picture.image %}
+              {% thumbnail picture.image '400x300' crop='center' as im %}
+              
+                <img src="{{ im.url }}" width="{{im.width}}" height="{{im.height}}"  class="card-img-top" alt="...">
+                {% endthumbnail %}
+                <div class="card-body">
+                  
+                  <h5 class="card-title text-center" > <i>{{picture.name}}</i></h5>
+                  <a href="{% url 'delete-picture' picture.id %}" class="btn btn-outline-danger">Delete</a>
+                {% else %}
+                 <div style="margin-top:20px; display: flex;">
+                  
+                  <div class="card-body">
+                    <h5 class="card-title">{{picture.name}}</h5>
+                    <a href="{% url 'delete-picture' picture.id %}" class="btn btn-outline-danger">Delete</a>
+                 </div>
+              {% endif %}
+                 
+                  
+                </div>
+              </div>
+
+             
+
+
+
+        
+        </div>
+        {% endfor %}
+
+
+
+    </div>
+
+
+
+
+
+
+    
+<div class="row" style="margin-left: 40%; margin-top: 20px;">
+
+       
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+           {% endif %}
+           
+           {% for page in page_obj.paginator.page_range %}
+           {% if page_obj.number == page %}
+          <li class="page-item active"><a class="page-link" href="?page={{page}}"> {{page}}</a></li>
+          {% else %}
+          <li class="page-item "><a class="page-link" href="?page={{page}}"> {{page}}</a></li>
+          {% endif %}
+           {% endfor %}
+
+
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+     
+
+</div>
+<div class="row" > 
+
+        
+    <a style="margin-left: 43%;" href="{% url 'index' %}"  ><button type="button" class="btn btn-outline-success">Home</button></a>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
