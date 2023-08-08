@@ -1,5 +1,5 @@
 from environs import Env
-
+import os
 env = Env()
 env.read_env()  
 
@@ -21,7 +21,7 @@ SECRET_KEY =env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','abdulmalik.python6.uz']
 
 
 # Application definition
@@ -158,11 +158,12 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 
 
-STATIC_FILES_DIRS = BASE_DIR / 'static'
+STATIC_FILES_DIRS = [BASE_DIR / 'static']
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = [BASE_DIR / 'media']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
