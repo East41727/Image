@@ -29,7 +29,7 @@ def Gallery(request):
     if request.method == 'POST':
         form=GalleryModelForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            form.save() 
             return redirect('index')
   
         

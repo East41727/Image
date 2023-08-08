@@ -13,7 +13,6 @@ class GalleryModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-       
         super(GalleryModel, self).save(*args, **kwargs)
    
    
